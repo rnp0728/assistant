@@ -4,9 +4,9 @@ use std::path::PathBuf;
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 pub struct Args {
-    /// List of file paths to process
+    /// List of file or folder paths to process
     #[arg(required = false)]
-    pub files: Vec<PathBuf>,
+    pub paths: Vec<PathBuf>,
 
     /// Copy output to clipboard
     #[arg(short = 'c', long = "copy")]
@@ -19,4 +19,8 @@ pub struct Args {
     /// Show current clipboard contents
     #[arg(short = 's', long = "show-clipboard")]
     pub show_clipboard: bool,
+
+    /// File extensions to exclude (e.g., .git, .DS_Store)
+    #[arg(short = 'e', long = "exclude-ext")]
+    pub exclude_extensions: Vec<String>,
 } 

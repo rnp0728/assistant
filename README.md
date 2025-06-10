@@ -4,7 +4,9 @@ A powerful command-line tool for file operations and content management. Current
 
 ## Features
 
-- Extract and format content from multiple files
+- Extract and format content from multiple files and folders
+- Process files and directories in the same command
+- Filter out specific file extensions
 - Copy formatted output to clipboard
 - Append content to existing clipboard content
 - Show current clipboard contents
@@ -156,12 +158,34 @@ assistant.exe -s
 
 #### macOS/Linux
 ```bash
+# Process specific files
 assistant file1.txt file2.txt
+
+# Process a folder
+assistant /path/to/folder
+
+# Process multiple files and folders together
+assistant file1.txt /path/to/folder file2.txt
+assistant src/ Cargo.toml README.md
+
+# Exclude specific file extensions
+assistant -e .git -e .DS_Store /path/to/folder
 ```
 
 #### Windows
 ```powershell
+# Process specific files
 assistant.exe file1.txt file2.txt
+
+# Process a folder
+assistant.exe C:\path\to\folder
+
+# Process multiple files and folders together
+assistant.exe file1.txt C:\path\to\folder file2.txt
+assistant.exe src\ Cargo.toml README.md
+
+# Exclude specific file extensions
+assistant.exe -e .git -e .DS_Store C:\path\to\folder
 ```
 
 ### Copy to Clipboard
@@ -169,17 +193,17 @@ assistant.exe file1.txt file2.txt
 #### macOS/Linux
 ```bash
 # Long form
-assistant --copy file1.txt file2.txt
+assistant --copy /path/to/folder
 # Short form
-assistant -c file1.txt file2.txt
+assistant -c /path/to/folder
 ```
 
 #### Windows
 ```powershell
 # Long form
-assistant.exe --copy file1.txt file2.txt
+assistant.exe --copy C:\path\to\folder
 # Short form
-assistant.exe -c file1.txt file2.txt
+assistant.exe -c C:\path\to\folder
 ```
 
 ### Append to Clipboard
@@ -187,17 +211,17 @@ assistant.exe -c file1.txt file2.txt
 #### macOS/Linux
 ```bash
 # Long form
-assistant --append file1.txt file2.txt
+assistant --append /path/to/folder
 # Short form
-assistant -a file1.txt file2.txt
+assistant -a /path/to/folder
 ```
 
 #### Windows
 ```powershell
 # Long form
-assistant.exe --append file1.txt file2.txt
+assistant.exe --append C:\path\to\folder
 # Short form
-assistant.exe -a file1.txt file2.txt
+assistant.exe -a C:\path\to\folder
 ```
 
 ### Examples
@@ -211,40 +235,51 @@ assistant.exe -a file1.txt file2.txt
    assistant.exe -s
    ```
 
-2. Process multiple files:
+2. Process a folder:
    ```bash
    # macOS/Linux
-   assistant /path/to/file1.txt /path/to/file2.txt
+   assistant /path/to/folder
 
    # Windows
-   assistant.exe C:\path\to\file1.txt C:\path\to\file2.txt
+   assistant.exe C:\path\to\folder
    ```
 
-3. Copy formatted content to clipboard:
+3. Process multiple files and folders together:
    ```bash
    # macOS/Linux
-   assistant -c /path/to/file1.txt /path/to/file2.txt
+   assistant src/ Cargo.toml README.md
+   assistant file1.txt /path/to/folder file2.txt
 
    # Windows
-   assistant.exe -c C:\path\to\file1.txt C:\path\to\file2.txt
+   assistant.exe src\ Cargo.toml README.md
+   assistant.exe file1.txt C:\path\to\folder file2.txt
    ```
 
-4. Append content to existing clipboard content:
+4. Exclude specific file extensions:
    ```bash
    # macOS/Linux
-   assistant -a /path/to/file1.txt /path/to/file2.txt
+   assistant -e .git -e .DS_Store /path/to/folder
 
    # Windows
-   assistant.exe -a C:\path\to\file1.txt C:\path\to\file2.txt
+   assistant.exe -e .git -e .DS_Store C:\path\to\folder
    ```
 
-5. Process files with non-existent ones (they will be skipped):
+5. Copy mixed content to clipboard:
    ```bash
    # macOS/Linux
-   assistant existing.txt nonexistent.txt
+   assistant -c src/ Cargo.toml
 
    # Windows
-   assistant.exe existing.txt nonexistent.txt
+   assistant.exe -c src\ Cargo.toml
+   ```
+
+6. Append mixed content to clipboard:
+   ```bash
+   # macOS/Linux
+   assistant -a src/ Cargo.toml
+
+   # Windows
+   assistant.exe -a src\ Cargo.toml
    ```
 
 ## Output Format

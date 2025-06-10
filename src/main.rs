@@ -19,7 +19,7 @@ fn main() -> Result<()> {
     }
     
     // Format files
-    let formatter = FileFormatter::new(args.files);
+    let formatter = FileFormatter::new(args.paths, args.exclude_extensions);
     let output = formatter.format()?;
 
     // Handle output
