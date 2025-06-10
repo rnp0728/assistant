@@ -1,9 +1,27 @@
 [package]
-name = "assistant"
+name = "assistant-cli"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
+authors = ["Rudra Narayan Panda <rnp.rudranarayanpanda@gmail.com>"]
+description = "A command-line tool to read and format file contents, with clipboard support"
+license = "MIT"
+repository = "https://github.com/rudranarayanpanda/assistant-cli"
+readme = "README.md"
+keywords = ["cli", "file", "format", "clipboard", "utility"]
+categories = ["command-line-utilities", "filesystem", "text-processing"]
 
 [dependencies]
 clap = { version = "4.4", features = ["derive"] }
-anyhow = "1.0"
 arboard = "3.3"
+anyhow = "1.0"
+thiserror = "1.0"
+
+[dev-dependencies]
+tempfile = "3.10"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

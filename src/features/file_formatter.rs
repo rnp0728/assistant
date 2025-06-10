@@ -114,4 +114,4 @@ impl FileFormatter {
 
         Ok(output)
     }
-} 
+}

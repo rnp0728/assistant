@@ -31,4 +31,4 @@ impl Clipboard {
         println!("{}", content);
         Ok(())
     }
-} 
+}
