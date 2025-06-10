@@ -1,0 +1,250 @@
+# Assistant CLI
+
+A powerful command-line tool for file operations and content management. Currently supports file content extraction with clipboard integration.
+
+## Features
+
+- Extract and format content from multiple files
+- Copy formatted output to clipboard
+- Cross-platform support (macOS, Windows, Linux)
+
+## Installation
+
+### Prerequisites
+
+#### For All Platforms
+- Rust and Cargo installed on your system
+  ```bash
+  # macOS/Linux
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+  # Windows (PowerShell)
+  winget install Rustlang.Rustup
+  # OR
+  Invoke-WebRequest -Uri https://win.rustup.rs -OutFile rustup-init.exe
+  .\rustup-init.exe
+  ```
+
+### Platform-Specific Installation
+
+#### macOS
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/assistant.git
+   cd assistant
+   ```
+
+2. Build the project:
+   ```bash
+   cargo build --release
+   ```
+
+3. Install globally (choose one method):
+
+   **Option A: Install to system path (requires sudo)**
+   ```bash
+   sudo cp ./target/release/assistant /usr/local/bin/
+   sudo chmod +x /usr/local/bin/assistant
+   ```
+
+   **Option B: Install to user's Cargo bin**
+   ```bash
+   cp ./target/release/assistant ~/.cargo/bin/
+   chmod +x ~/.cargo/bin/assistant
+   ```
+
+#### Linux
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/assistant.git
+   cd assistant
+   ```
+
+2. Build the project:
+   ```bash
+   cargo build --release
+   ```
+
+3. Install globally (choose one method):
+
+   **Option A: Install to system path (requires sudo)**
+   ```bash
+   sudo cp ./target/release/assistant /usr/local/bin/
+   sudo chmod +x /usr/local/bin/assistant
+   ```
+
+   **Option B: Install to user's Cargo bin**
+   ```bash
+   cp ./target/release/assistant ~/.cargo/bin/
+   chmod +x ~/.cargo/bin/assistant
+   ```
+
+#### Windows
+1. Clone the repository:
+   ```powershell
+   git clone https://github.com/yourusername/assistant.git
+   cd assistant
+   ```
+
+2. Build the project:
+   ```powershell
+   cargo build --release
+   ```
+
+3. Install globally (choose one method):
+
+   **Option A: Install to system path (requires admin)**
+   ```powershell
+   # Create a directory for your tools (if it doesn't exist)
+   New-Item -ItemType Directory -Force -Path "C:\Tools"
+   
+   # Copy the binary
+   Copy-Item .\target\release\assistant.exe C:\Tools\
+   
+   # Add to PATH (run in admin PowerShell)
+   [Environment]::SetEnvironmentVariable(
+       "Path",
+       [Environment]::GetEnvironmentVariable("Path", "Machine") + ";C:\Tools",
+       "Machine"
+   )
+   ```
+
+   **Option B: Install to user's Cargo bin**
+   ```powershell
+   Copy-Item .\target\release\assistant.exe ~\.cargo\bin\
+   ```
+
+### Verify Installation
+
+#### macOS/Linux
+```bash
+which assistant
+# Should show the path to your installation
+assistant --version
+```
+
+#### Windows
+```powershell
+Get-Command assistant
+# Should show the path to your installation
+assistant --version
+```
+
+## Usage
+
+### Basic Usage
+
+#### macOS/Linux
+```bash
+assistant file1.txt file2.txt
+```
+
+#### Windows
+```powershell
+assistant.exe file1.txt file2.txt
+```
+
+### Copy to Clipboard
+
+#### macOS/Linux
+```bash
+assistant --copy file1.txt file2.txt
+```
+
+#### Windows
+```powershell
+assistant.exe --copy file1.txt file2.txt
+```
+
+### Examples
+
+1. Process multiple files:
+   ```bash
+   # macOS/Linux
+   assistant /path/to/file1.txt /path/to/file2.txt
+
+   # Windows
+   assistant.exe C:\path\to\file1.txt C:\path\to\file2.txt
+   ```
+
+2. Copy formatted content to clipboard:
+   ```bash
+   # macOS/Linux
+   assistant --copy /path/to/file1.txt /path/to/file2.txt
+
+   # Windows
+   assistant.exe --copy C:\path\to\file1.txt C:\path\to\file2.txt
+   ```
+
+3. Process files with non-existent ones (they will be skipped):
+   ```bash
+   # macOS/Linux
+   assistant existing.txt nonexistent.txt
+
+   # Windows
+   assistant.exe existing.txt nonexistent.txt
+   ```
+
+## Output Format
+
+The tool formats the output as follows:
+```
+FILE NAME: filename.txt
+FILE CONTENT
+```
+```
+[file contents here]
+```
+
+---
+
+## Development
+
+### Project Structure
+```
+src/
+├── main.rs           # Main application entry point
+├── cli.rs           # CLI argument handling
+├── features/        # Feature modules
+│   ├── mod.rs
+│   └── file_formatter.rs  # File formatting feature
+└── utils/           # Utility modules
+    ├── mod.rs
+    └── clipboard.rs       # Clipboard operations
+```
+
+### Building for Development
+```bash
+# macOS/Linux
+cargo build
+
+# Windows
+cargo build
+```
+
+### Running Tests
+```bash
+# macOS/Linux
+cargo test
+
+# Windows
+cargo test
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Built with Rust
+- Uses [clap](https://github.com/clap-rs/clap) for CLI argument parsing
+- Uses [arboard](https://github.com/1Password/arboard) for clipboard operations 
