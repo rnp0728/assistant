@@ -6,6 +6,8 @@ A powerful command-line tool for file operations and content management. Current
 
 - Extract and format content from multiple files
 - Copy formatted output to clipboard
+- Append content to existing clipboard content
+- Show current clipboard contents
 - Cross-platform support (macOS, Windows, Linux)
 
 ## Installation
@@ -132,6 +134,24 @@ assistant --version
 
 ## Usage
 
+### Show Clipboard Contents
+
+#### macOS/Linux
+```bash
+# Long form
+assistant --show-clipboard
+# Short form
+assistant -s
+```
+
+#### Windows
+```powershell
+# Long form
+assistant.exe --show-clipboard
+# Short form
+assistant.exe -s
+```
+
 ### Basic Usage
 
 #### macOS/Linux
@@ -148,17 +168,50 @@ assistant.exe file1.txt file2.txt
 
 #### macOS/Linux
 ```bash
+# Long form
 assistant --copy file1.txt file2.txt
+# Short form
+assistant -c file1.txt file2.txt
 ```
 
 #### Windows
 ```powershell
+# Long form
 assistant.exe --copy file1.txt file2.txt
+# Short form
+assistant.exe -c file1.txt file2.txt
+```
+
+### Append to Clipboard
+
+#### macOS/Linux
+```bash
+# Long form
+assistant --append file1.txt file2.txt
+# Short form
+assistant -a file1.txt file2.txt
+```
+
+#### Windows
+```powershell
+# Long form
+assistant.exe --append file1.txt file2.txt
+# Short form
+assistant.exe -a file1.txt file2.txt
 ```
 
 ### Examples
 
-1. Process multiple files:
+1. Show clipboard contents:
+   ```bash
+   # macOS/Linux
+   assistant -s
+
+   # Windows
+   assistant.exe -s
+   ```
+
+2. Process multiple files:
    ```bash
    # macOS/Linux
    assistant /path/to/file1.txt /path/to/file2.txt
@@ -167,16 +220,25 @@ assistant.exe --copy file1.txt file2.txt
    assistant.exe C:\path\to\file1.txt C:\path\to\file2.txt
    ```
 
-2. Copy formatted content to clipboard:
+3. Copy formatted content to clipboard:
    ```bash
    # macOS/Linux
-   assistant --copy /path/to/file1.txt /path/to/file2.txt
+   assistant -c /path/to/file1.txt /path/to/file2.txt
 
    # Windows
-   assistant.exe --copy C:\path\to\file1.txt C:\path\to\file2.txt
+   assistant.exe -c C:\path\to\file1.txt C:\path\to\file2.txt
    ```
 
-3. Process files with non-existent ones (they will be skipped):
+4. Append content to existing clipboard content:
+   ```bash
+   # macOS/Linux
+   assistant -a /path/to/file1.txt /path/to/file2.txt
+
+   # Windows
+   assistant.exe -a C:\path\to\file1.txt C:\path\to\file2.txt
+   ```
+
+5. Process files with non-existent ones (they will be skipped):
    ```bash
    # macOS/Linux
    assistant existing.txt nonexistent.txt

@@ -10,16 +10,28 @@ use utils::clipboard::Clipboard;
 
 fn main() -> Result<()> {
     let args = Args::parse();
+
+    // Show clipboard and exit if requested
+    if args.show_clipboard {
+        let clipboard = Clipboard::new()?;
+        clipboard.show()?;
+        return Ok(());
+    }
     
     // Format files
     let formatter = FileFormatter::new(args.files);
     let output = formatter.format()?;
 
     // Handle output
-    if args.copy {
+    if args.copy || args.append {
         let clipboard = Clipboard::new()?;
-        clipboard.copy(&output)?;
-        println!("Content copied to clipboard!");
+        if args.append {
+            clipboard.append(&output)?;
+            println!("Content appended to clipboard!");
+        } else {
+            clipboard.copy(&output)?;
+            println!("Content copied to clipboard!");
+        }
     } else {
         println!("{}", output);
     }
