@@ -1,6 +1,6 @@
 [package]
 name = "assistant-cli"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Rudra Narayan Panda <rnp.rudranarayanpanda@gmail.com>"]
 description = "A command-line tool to read and format file contents, with clipboard support"
